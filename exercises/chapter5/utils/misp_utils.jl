@@ -1,0 +1,31 @@
+# -------------------------------------------------------------
+#  Code for: "Introduction to Integer Programming and Applications with Julia"
+#  Chapter: 5 – Graph Problems
+#  Section: 5.1.3 - Solving MISP with Julia
+#  Author(s): Luiz Henrique Nogueira Lorena
+# -------------------------------------------------------------
+
+using Karnak # Graphs Visualization package
+using Colors # Colors package
+
+# Function to plot the solution
+function plot_solution(graph, S)
+    # Create color vector
+    n = Graphs.nv(graph)
+    vertexfillcolors = [i in S ? Colors.RGB(1,0,0) : Colors.RGB(0,0,0) for i in 1:n]
+
+    # Draw graph
+    @drawsvg begin
+        background("white")
+        sethue("black")
+        fontsize(20)
+        drawgraph(
+            graph,
+            layout = stress,
+            vertexshapesizes = 5,
+            vertexlabelfontsizes = 5,
+            vertexlabels = 1:n,
+            vertexfillcolors = vertexfillcolors
+        )
+    end 800 400
+end
