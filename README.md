@@ -9,7 +9,7 @@ Because this repository includes `Project.toml` and `Manifest.toml` files, you c
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/Luiz-Lorena/intro-ilp-with-julia-notebooks.git](https://github.com/Luiz-Lorena/intro-ilp-with-julia-notebooks.git)
+git clone https://github.com/Luiz-Lorena/intro-ilp-with-julia-notebooks.git
 cd intro-ilp-with-julia-notebooks
 ```
 
