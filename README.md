@@ -26,7 +26,7 @@ Provided you properly credit the authors. If you use this book, please cite it a
       Chaves, Ant{\\^o}nio Augusto
     },
     year = {2026},
-    doi = {https://doi.org/10.5281/zenodo.21166420},
+    doi = {https://doi.org/10.5281/zenodo.21166419},
     url = {https://github.com/Luiz-Lorena/intro-ilp-with-julia}
   }
 ```

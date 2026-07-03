@@ -17,7 +17,7 @@ authors:
 version: "1.0.1"
 date-released: 2026-07-03
 
-doi: 10.5281/zenodo.21166420
+doi: 10.5281/zenodo.21166419
 
 repository-code: https://github.com/Luiz-Lorena/intro-ilp-with-julia
 url: https://luiz-lorena.github.io/intro-ilp-with-julia
