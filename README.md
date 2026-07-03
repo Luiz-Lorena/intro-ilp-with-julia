@@ -1,8 +1,35 @@
-# "Introduction to Integer Programming and Applications with Julia" - Companion Notebooks
+# "Introduction to Integer Programming and Applications with Julia"
+
+This repository contains the Jupyter notebooks accompanying the book [*Introduction to Integer Programming and Applications with Julia*](intro-ilp-julia.pdf).
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21166420.svg)](https://doi.org/10.5281/zenodo.21166420)
 
-This repository contains the Jupyter notebooks accompanying the book *Introduction to Integer Programming and Applications with Julia*.
+## How to cite the book
+
+This repository is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) license.
+
+You may:
+- Share
+- Adapt
+- Use commercially
+
+Provided you properly credit the authors. If you use this book, please cite it as follows.
+
+```bibtex
+  @book{LorenaEtAl2026,
+    title = {
+      Introduction to Integer Programming and Applications with Julia
+    },
+    author = {
+      Lorena, Luiz Antonio Nogueira and
+      Lorena, Luiz Henrique Nogueira and
+      Chaves, Ant{\\^o}nio Augusto
+    },
+    year = {2026},
+    doi = {https://doi.org/10.5281/zenodo.21166420},
+    url = {https://github.com/Luiz-Lorena/intro-ilp-with-julia}
+  }
+```
 
 ## Getting Started & Installing Packages
 
