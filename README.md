@@ -54,14 +54,14 @@ Pkg.instantiate()
 
 ### 3. Run the Notebooks 
 
-If you don't have Jupyter installed via Julia yet, add IJulia and launch it:
+If you want to use Jupyter, import IJulia and launch it:
 
 ```julia
-using Pkg
-Pkg.add("IJulia") # Only needed the first time
 using IJulia
 notebook()
 ```
+
+If you want to use Visual Studio Code, install the [Julia extension](https://code.visualstudio.com/docs/languages/julia).
 
 ## Chapter Examples
 
