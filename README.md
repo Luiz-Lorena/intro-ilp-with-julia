@@ -6,7 +6,14 @@ This repository contains the Jupyter notebooks accompanying the book [*Introduct
 
 ## How to cite the book
 
-If you use this book, please cite it as follows.
+This repository is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) license.
+
+You may:
+- Share
+- Adapt
+- Use commercially
+
+Provided you properly credit the authors. If you use this book, please cite it as follows.
 
 ```bibtex
   @book{LorenaEtAl2026,
