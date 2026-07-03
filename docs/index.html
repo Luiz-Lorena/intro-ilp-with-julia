@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Integer Programming and Applications with Julia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #dc2626;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border: #e5e7eb;
+            --success: #10b981;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,128C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        /* About Section */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .feature-item span {
+            flex: 1;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            border-radius: 1rem;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        /* Chapters Grid */
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .chapter-card {
+            background: var(--bg-light);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .chapter-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .chapter-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .chapter-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Key Features */
+        .features {
+            background: var(--bg-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+
+        /* Authors Section */
+        .authors-section {
+            text-align: center;
+        }
+
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .author-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .author-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .author-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .author-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Citation Section */
+        .citation-section {
+            background: var(--bg-light);
+        }
+
+        .citation-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            border-left: 4px solid var(--primary);
+            margin-top: 2rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-white);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 2rem;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -6px);
+            }
+
+            .hero {
+                margin-top: 60px;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .chapters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-3 {
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-brand">📚 ILP Julia</a>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#chapters">Chapters</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#authors">Authors</a></li>
+            <li><a href="#citation">Citation</a></li>
+            <li><a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" target="_blank" class="nav-cta">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Introduction to Integer Programming and Applications with Julia</h1>
+            <p>Master Integer Linear Programming with practical examples and Jupyter notebooks</p>
+            <div class="hero-buttons">
+                <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" class="btn btn-primary">Access Notebooks</a>
+                <a href="#chapters" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2 style="text-align: left;">About This Book</h2>
+            <p>A comprehensive guide to Integer Linear Programming (ILP) theory and applications, featuring practical implementations using Julia. This book combines theoretical foundations with real-world problem-solving techniques.</p>
+            
+            <div class="about-features">
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span><strong>7 Comprehensive Chapters:</strong> From fundamentals to advanced techniques</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span><strong>Practical Examples:</strong> Real-world applications and case studies</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span><strong>Jupyter Notebooks:</strong> Interactive code and visualizations</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span><strong>Julia Implementation:</strong> Modern, high-performance language</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span><strong>Open Source:</strong> CC BY 4.0 License - Free to use and adapt</span>
+                </div>
+            </div>
+        </div>
+        <div class="about-image">📖</div>
+    </section>
+
+    <!-- Chapters Section -->
+    <section id="chapters">
+        <h2>Chapters Overview</h2>
+        <div class="chapters-grid">
+            <div class="chapter-card">
+                <h3>Chapter 1: Fundamentals</h3>
+                <p>Introduction to integer programming, linear relaxation, and basic optimization concepts.</p>
+                <div>
+                    <span class="chapter-tag">Basics</span>
+                    <span class="chapter-tag">Theory</span>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <h3>Chapter 2: Formulation</h3>
+                <p>Learn how to formulate real-world problems as ILP models.</p>
+                <div>
+                    <span class="chapter-tag">Modeling</span>
+                    <span class="chapter-tag">Applications</span>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <h3>Chapter 3: Facility Location</h3>
+                <p>Solve facility location problems including MCLP, SCLP, and capacity constraints.</p>
+                <div>
+                    <span class="chapter-tag">Optimization</span>
+                    <span class="chapter-tag">Case Study</span>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <h3>Chapter 4: Traveling Salesman</h3>
+                <p>Master TSP formulations and modern solution approaches.</p>
+                <div>
+                    <span class="chapter-tag">Routing</span>
+                    <span class="chapter-tag">Heuristics</span>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <h3>Chapter 5: Graph Algorithms</h3>
+                <p>Explore graph coloring, cliques, and partitioning problems.</p>
+                <div>
+                    <span class="chapter-tag">Graphs</span>
+                    <span class="chapter-tag">Theory</span>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <h3>Chapter 6: Cutting Planes</h3>
+                <p>Advanced techniques for tightening formulations and improving bounds.</p>
+                <div>
+                    <span class="chapter-tag">Advanced</span>
+                    <span class="chapter-tag">Methods</span>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <h3>Chapter 7: Lagrangian</h3>
+                <p>Introduction to Lagrangian relaxation and dual methods.</p>
+                <div>
+                    <span class="chapter-tag">Advanced</span>
+                    <span class="chapter-tag">Theory</span>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <h3>Appendix A: TSP Dataset</h3>
+                <p>Comprehensive traveling salesman problem instances and analysis.</p>
+                <div>
+                    <span class="chapter-tag">Data</span>
+                    <span class="chapter-tag">Reference</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2>Why Choose This Book?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-card-icon">⚡</div>
+                <h3>Julia Language</h3>
+                <p>High-performance computing with elegant syntax for numerical and scientific computing.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-icon">📊</div>
+                <h3>Practical Focus</h3>
+                <p>Real-world problems and applications rather than just theory.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-icon">🔬</div>
+                <h3>Research-Based</h3>
+                <p>Based on peer-reviewed research and current best practices.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-icon">🎓</div>
+                <h3>Educational</h3>
+                <p>Comprehensive explanations with step-by-step examples.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-icon">💻</div>
+                <h3>Reproducible</h3>
+                <p>All code is in Jupyter notebooks - run it yourself and experiment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-icon">🌍</div>
+                <h3>Open Access</h3>
+                <p>Free to use, modify, and distribute under CC BY 4.0 license.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authors Section -->
+    <section id="authors" class="authors-section">
+        <h2>Authors</h2>
+        <div class="authors-grid">
+            <div class="author-card">
+                <div class="author-avatar">LA</div>
+                <h3>Luiz Antonio Nogueira Lorena</h3>
+                <p>Senior Researcher in Combinatorial Optimization and Integer Programming</p>
+            </div>
+            <div class="author-card">
+                <div class="author-avatar">LH</div>
+                <h3>Luiz Henrique Nogueira Lorena</h3>
+                <p>Expert in Algorithm Design and Optimization Methods</p>
+            </div>
+            <div class="author-card">
+                <div class="author-avatar">AA</div>
+                <h3>Antônio Augusto Chaves</h3>
+                <p>Specialist in Applied Integer Programming and Heuristics</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citation Section -->
+    <section id="citation" class="citation-section">
+        <h2>How to Cite</h2>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 1rem;">Please cite this book in your research using the following BibTeX entry:</p>
+        <div class="citation-box">
+@book{LorenaEtAl2026,<br>
+&nbsp;&nbsp;title = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Introduction to Integer Programming and Applications with Julia<br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;author = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Lorena, Luiz Antonio Nogueira and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Lorena, Luiz Henrique Nogueira and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Chaves, Antônio Augusto<br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;year = {2026},<br>
+&nbsp;&nbsp;doi = {https://doi.org/10.5281/zenodo.21166419},<br>
+&nbsp;&nbsp;url = {https://github.com/Luiz-Lorena/intro-ilp-with-julia}<br>
+}
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="https://zenodo.org/records/21166420" class="btn btn-primary">View on Zenodo</a>
+            <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" class="btn btn-secondary" style="margin-left: 1rem;">GitHub Repository</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="badge">
+            <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21166420.svg" alt="DOI Badge" style="height: 40px;">
+        </div>
+        <div class="footer-links">
+            <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" target="_blank">GitHub</a>
+            <a href="https://zenodo.org/records/21166420" target="_blank">Zenodo</a>
+            <a href="#citation">Citation</a>
+            <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia/blob/main/LICENSE" target="_blank">License (CC BY 4.0)</a>
+        </div>
+        <p>&copy; 2026 Lorena, Lorena, and Chaves. All rights reserved. Licensed under CC BY 4.0</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll with offset for fixed navbar
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        let lastScroll = 0;
+        const navbar = document.querySelector('nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= 0) {
+                navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > *').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
