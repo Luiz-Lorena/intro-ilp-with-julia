@@ -1,5 +1,7 @@
 # "Introduction to Integer Programming and Applications with Julia" - Companion Notebooks
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21166420.svg)](https://doi.org/10.5281/zenodo.21166420)
+
 This repository contains the Jupyter notebooks accompanying the book *Introduction to Integer Programming and Applications with Julia*.
 
 ## Getting Started & Installing Packages
