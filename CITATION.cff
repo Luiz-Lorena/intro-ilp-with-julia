@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "Introduction to Integer Programming and Applications with Julia"
+message: "If you use this book, please cite it as follows."
+type: book
+
+authors:
+  - family-names: Lorena
+    given-names: Luiz Antonio Nogueira
+
+  - family-names: Lorena
+    given-names: Luiz Henrique Nogueira
+
+  - family-names: Chaves
+    given-names: Antônio Augusto
+
+
+version: "1.0.1"
+date-released: 2026-07-03
+
+doi: 10.5281/zenodo.21166420
+
+repository-code: https://github.com/Luiz-Lorena/intro-ilp-with-julia
+url: https://luiz-lorena.github.io/intro-ilp-with-julia
+
+license: CC-BY-4.0
