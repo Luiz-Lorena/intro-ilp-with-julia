@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="140"
+   height="140"
+   viewBox="0 0 140 140"
+   sodipodi:docname="lattes.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showguides="true"
+     inkscape:zoom="4.1523096"
+     inkscape:cx="62.134096"
+     inkscape:cy="74.536832"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1">
+    <g
+       id="g5"
+       transform="translate(-6.132921,-4.3505048)">
+      <circle
+         style="display:inline;fill:#142650;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:12.174"
+         id="path1"
+         cx="85.494591"
+         cy="67.191521"
+         r="23.601322"
+         inkscape:label="Circulo" />
+      <path
+         style="fill:#142650;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10"
+         d="M 82.845461,106.68761 C 35.696101,98.632527 22.978345,8.3576432 115.83915,28.65875 62.786251,-1.6785373 29.957894,13.292511 21.674685,79.955503 38.853879,103.95821 59.244138,112.86891 82.845461,106.68761 Z"
+         id="path4"
+         sodipodi:nodetypes="cccc"
+         inkscape:label="Superior" />
+      <path
+         style="fill:#2159a6;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10"
+         d="M 116.32081,40.459411 C 151.16086,113.91251 52.019244,152.0439 19.748046,89.829526 c -0.48166,17.500304 0.642213,31.468434 3.371618,41.904394 21.674684,4.57577 42.225496,4.17438 68.87733,0.24083 C 136.79134,117.0433 144,67.03097 116.32081,40.459411 Z"
+         id="path5"
+         inkscape:label="Inferior"
+         sodipodi:nodetypes="ccccc" />
+    </g>
+  </g>
+</svg>

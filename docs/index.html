@@ -24,6 +24,19 @@
             --success: #10b981;
         }
 
+        html.dark-mode {
+            --primary: #60a5fa;
+            --primary-dark: #3b82f6;
+            --primary-light: #93c5fd;
+            --secondary: #f87171;
+            --text-dark: #f3f4f6;
+            --text-light: #d1d5db;
+            --bg-light: #1f2937;
+            --bg-white: #111827;
+            --border: #374151;
+            --success: #34d399;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -48,10 +61,15 @@
             align-items: center;
             z-index: 1000;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        html.dark-mode nav {
+            background: rgba(17, 24, 39, 0.95);
         }
 
         .nav-brand {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
@@ -109,6 +127,27 @@
             transition: all 0.3s ease;
         }
 
+        .theme-toggle {
+            background: transparent;
+            border: 2px solid var(--text-dark);
+            color: var(--text-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
         /* Hero Section */
         .hero {
             margin-top: 80px;
@@ -121,6 +160,15 @@
             padding: 2rem;
             position: relative;
             overflow: hidden;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2.5rem;
+            align-items: center;
+            width: min(1100px, 100%);
+            z-index: 1;
         }
 
         .hero::before {
@@ -136,14 +184,13 @@
         }
 
         .hero-content {
-            max-width: 800px;
-            text-align: center;
-            z-index: 1;
+            max-width: 700px;
+            text-align: left;
             animation: fadeInUp 0.8s ease;
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
+            font-size: clamp(rem, 5vw, 4rem);
             margin-bottom: 1.5rem;
             font-weight: 800;
         }
@@ -157,8 +204,32 @@
         .hero-buttons {
             display: flex;
             gap: 1rem;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            animation: fadeInUp 0.9s ease;
+        }
+
+        .hero-image-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 1.25rem;
+            padding: 1rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .hero-image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0.9rem;
         }
 
         .btn {
@@ -211,7 +282,7 @@
         /* About Section */
         .about {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
             gap: 3rem;
             align-items: center;
         }
@@ -267,6 +338,58 @@
             justify-content: center;
             color: white;
             font-size: 4rem;
+        }
+
+        .about-panel {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-panel-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            width: 100%;
+            margin-top: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-panel-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .about-panel-card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .about-panel-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-panel-list li {
+            color: var(--text-dark);
+            padding-left: 0.5rem;
+            border-left: 3px solid var(--primary-light);
+        }
+
+        .about-panel-link {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .about-panel-link:hover {
+            text-decoration: underline;
         }
 
         /* Chapters Grid */
@@ -375,15 +498,19 @@
         .author-avatar {
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             border-radius: 50%;
             margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 3rem;
-            font-weight: bold;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .author-card h3 {
@@ -394,6 +521,56 @@
         .author-card p {
             color: var(--text-light);
             font-size: 0.9rem;
+        }
+
+        .author-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .author-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .author-link:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .author-link.lattes {
+            background: white;
+            border: 2px solid #000000;
+        }
+
+        .author-link.lattes:hover {
+            background: #f0f0f0;
+            border: 4px solid #000000;
+        }
+
+        .author-link.lattes img {
+            filter: brightness(0) saturate(100%) contrast(100%);
+        }
+
+        .author-link.orcid {
+            background: #a6ce39;
+        }
+
+        .author-link.orcid:hover {
+            background: #8ab71b;
         }
 
         /* Citation Section */
@@ -479,6 +656,10 @@
                 display: flex;
             }
 
+            html.dark-mode .nav-links {
+                background: rgba(17, 24, 39, 0.98);
+            }
+
             .hamburger {
                 display: flex;
             }
@@ -497,6 +678,19 @@
 
             .hero {
                 margin-top: 60px;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
             }
 
             section {
@@ -566,163 +760,38 @@
             <span></span>
         </button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#about">About</a></li>
-            <li><a href="#chapters">Chapters</a></li>
-            <li><a href="#features">Features</a></li>
             <li><a href="#authors">Authors</a></li>
             <li><a href="#citation">Citation</a></li>
             <li><a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" target="_blank" class="nav-cta">GitHub</a></li>
+            <li><button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Introduction to Integer Programming and Applications with Julia</h1>
-            <p>Master Integer Linear Programming with practical examples and Jupyter notebooks</p>
-            <div class="hero-buttons">
-                <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" class="btn btn-primary">Access Notebooks</a>
-                <a href="#chapters" class="btn btn-secondary">Learn More</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about-content">
-            <h2 style="text-align: left;">About This Book</h2>
-            <p>A comprehensive guide to Integer Linear Programming (ILP) theory and applications, featuring practical implementations using Julia. This book combines theoretical foundations with real-world problem-solving techniques.</p>
-            
-            <div class="about-features">
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <span><strong>8 Comprehensive Chapters:</strong> From fundamentals to advanced techniques</span>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1>Introduction to Integer Programming and Applications with Julia</h1>
+                <p>Master Integer Linear Programming with practical examples and Jupyter notebooks</p>
+                <div class="hero-buttons">
+                    <a href="../intro-ilp-julia.pdf" class="btn btn-primary">Download Book</a>
+                    <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" class="btn btn-secondary">Access Notebooks</a>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <span><strong>Practical Examples:</strong> Real-world applications and case studies</span>
+            <!-- <div class="about-panel"> -->
+            <div class="about-panel-card">
+                    <h3>What You Will Find</h3>
+                    <ul class="about-panel-list">
+                        <li><strong>Concepts:</strong> Foundations of integer programming</li>
+                        <li><strong>Applications:</strong> Real-world optimization problems</li>
+                        <li><strong>Practice:</strong> Notebooks and examples in Julia</li>
+                    </ul>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <span><strong>Jupyter Notebooks:</strong> Interactive code and visualizations</span>
+            <!-- </div> -->
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-card">
+                    <img src="images/cover.png" alt="Book cover preview">
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <span><strong>Julia Implementation:</strong> Modern, high-performance language</span>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <span><strong>Open Source:</strong> CC BY 4.0 License - Free to use and adapt</span>
-                </div>
-            </div>
-        </div>
-        <div class="about-image">📖</div>
-    </section>
-
-    <!-- Chapters Section -->
-    <section id="chapters">
-        <h2>Chapters Overview</h2>
-        <div class="chapters-grid">
-            <div class="chapter-card">
-                <h3>Chapter 1: Fundamentals</h3>
-                <p>Introduction to integer programming, linear relaxation, and basic optimization concepts.</p>
-                <div>
-                    <span class="chapter-tag">Basics</span>
-                    <span class="chapter-tag">Theory</span>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <h3>Chapter 2: Knapsack Problems</h3>
-                <p>Learn how to formulate and solve knapsack problems using integer programming.</p>
-                <div>
-                    <span class="chapter-tag">Modeling</span>
-                    <span class="chapter-tag">Applications</span>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <h3>Chapter 3: Location Problems</h3>
-                <p>Solve facility location problems including PMP, MCLP, SCLP.</p>
-                <div>
-                    <span class="chapter-tag">Modeling</span>
-                    <span class="chapter-tag">Applications</span>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <h3>Chapter 4: Traveling Salesman Problem</h3>
-                <p>Master TSP formulations and modern solution approaches.</p>
-                <div>
-                    <span class="chapter-tag">Modeling</span>
-                    <span class="chapter-tag">Applications</span>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <h3>Chapter 5: Graph Problems</h3>
-                <p>Explore graph coloring, covering, and partitioning problems.</p>
-                <div>
-                    <span class="chapter-tag">Modeling</span>
-                    <span class="chapter-tag">Applications</span>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <h3>Chapter 6: Column Generation</h3>
-                <p>Advanced techniques for tightening formulations and improving bounds.</p>
-                <div>
-                    <span class="chapter-tag">Advanced</span>
-                    <span class="chapter-tag">Methods</span>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <h3>Chapter 7: Lagrangian Relaxation</h3>
-                <p>Introduction to Lagrangian relaxation, duals and subgradient method.</p>
-                <div>
-                    <span class="chapter-tag">Advanced</span>
-                    <span class="chapter-tag">Methods</span>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <h3>Chapter 8: Branch-and-Bound</h3>
-                <p>Learn the branch-and-bound method for solving integer programming problems.</p>
-                <div>
-                    <span class="chapter-tag">Advanced</span>
-                    <span class="chapter-tag">Methods</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <h2>Why Choose This Book?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-card-icon">⚡</div>
-                <h3>Julia Language</h3>
-                <p>High-performance computing with elegant syntax for numerical and scientific computing.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-icon">📊</div>
-                <h3>Practical Focus</h3>
-                <p>Real-world problems and applications rather than just theory.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-icon">🔬</div>
-                <h3>Research-Based</h3>
-                <p>Based on peer-reviewed research and current best practices.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-icon">🎓</div>
-                <h3>Educational</h3>
-                <p>Comprehensive explanations with step-by-step examples.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-icon">💻</div>
-                <h3>Reproducible</h3>
-                <p>All code is in Jupyter notebooks - run it yourself and experiment.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-icon">🌍</div>
-                <h3>Open Access</h3>
-                <p>Free to use, modify, and distribute under CC BY 4.0 license.</p>
             </div>
         </div>
     </section>
@@ -732,19 +801,49 @@
         <h2>Authors</h2>
         <div class="authors-grid">
             <div class="author-card">
-                <div class="author-avatar">LA</div>
+                <div class="author-avatar">
+                    <img src="images/LuizANLorena.gif" alt="Luiz Antonio Nogueira Lorena">
+                </div>
                 <h3>Luiz Antonio Nogueira Lorena</h3>
                 <p>Senior Researcher in Combinatorial Optimization and Integer Programming</p>
+                <div class="author-links">
+                    <a href="https://orcid.org/0000-0003-2043-1441" target="_blank" rel="noopener noreferrer" class="author-link orcid" title="ORCID">
+                        <img src="images/orcid_logo.svg" alt="ORCID" style="width: 20px; height: 20px;">
+                    </a>
+                    <a href="http://lattes.cnpq.br/7195702087655314" target="_blank" rel="noopener noreferrer" class="author-link lattes" title="Plataforma Lattes">
+                        <img src="images/lattes_logo.svg" alt="Lattes" style="width: 20px; height: 20px;">
+                    </a>
+                </div>
             </div>
             <div class="author-card">
-                <div class="author-avatar">LH</div>
+                <div class="author-avatar">
+                    <img src="images/LuizHNLorena.gif" alt="Luiz Henrique Nogueira Lorena">
+                </div>
                 <h3>Luiz Henrique Nogueira Lorena</h3>
                 <p>Expert in Algorithm Design and Optimization Methods</p>
+                <div class="author-links">
+                    <a href="https://orcid.org/0000-0002-7072-785X" target="_blank" rel="noopener noreferrer" class="author-link orcid" title="ORCID">
+                        <img src="images/orcid_logo.svg" alt="ORCID" style="width: 20px; height: 20px;">
+                    </a>
+                    <a href="http://lattes.cnpq.br/3719447000531011" target="_blank" rel="noopener noreferrer" class="author-link lattes" title="Plataforma Lattes">
+                        <img src="images/lattes_logo.svg" alt="Lattes" style="width: 20px; height: 20px;">
+                    </a>
+                </div>
             </div>
             <div class="author-card">
-                <div class="author-avatar">AA</div>
+                <div class="author-avatar">
+                    <img src="images/AntonioAChaves.gif" alt="Antônio Augusto Chaves">
+                </div>
                 <h3>Antônio Augusto Chaves</h3>
                 <p>Specialist in Applied Integer Programming and Heuristics</p>
+                <div class="author-links">
+                    <a href="https://orcid.org/0000-0001-5767-6798" target="_blank" rel="noopener noreferrer" class="author-link orcid" title="ORCID">
+                        <img src="images/orcid_logo.svg" alt="ORCID" style="width: 20px; height: 20px;">
+                    </a>
+                    <a href="http://lattes.cnpq.br/4973949421738244" target="_blank" rel="noopener noreferrer" class="author-link lattes" title="Plataforma Lattes">
+                        <img src="images/lattes_logo.svg" alt="Lattes" style="width: 20px; height: 20px;">
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -769,7 +868,7 @@
 }
         </div>
         <div style="text-align: center; margin-top: 2rem;">
-            <a href="https://zenodo.org/records/21166420" class="btn btn-primary">View on Zenodo</a>
+            <a href="https://doi.org/10.5281/zenodo.21166419" class="btn btn-primary">View on Zenodo</a>
             <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" class="btn btn-primary" style="margin-left: 1rem;">GitHub Repository</a>
         </div>
     </section>
@@ -777,11 +876,11 @@
     <!-- Footer -->
     <footer>
         <div class="badge">
-            <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21166420.svg" alt="DOI Badge" style="height: 40px;">
+            <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21166419.svg" alt="DOI Badge" style="height: 40px;">
         </div>
         <div class="footer-links">
             <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" target="_blank">GitHub</a>
-            <a href="https://zenodo.org/records/21166420" target="_blank">Zenodo</a>
+            <a href="https://zenodo.org/records/21166419" target="_blank">Zenodo</a>
             <a href="#citation">Citation</a>
             <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia/blob/main/LICENSE" target="_blank">License (CC BY 4.0)</a>
         </div>
@@ -789,6 +888,27 @@
     </footer>
 
     <script>
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        } else {
+            html.classList.remove('dark-mode');
+            themeToggle.textContent = '🌙';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark-mode');
+            const isDark = html.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+
         // Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
