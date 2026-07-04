@@ -86,6 +86,10 @@
             transition: background 0.3s ease;
         }
 
+        .nav-links .nav-cta {
+            color: white;
+        }
+
         .nav-cta:hover {
             background: var(--primary-dark);
         }
@@ -234,7 +238,7 @@
         .feature-item {
             display: flex;
             gap: 1rem;
-            align-items: flex-start;
+            align-items: center;
         }
 
         .feature-icon {
@@ -555,7 +559,7 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="#" class="nav-brand">📚 ILP Julia</a>
+        <a href="#" class="nav-brand">📚 Introduction to Integer Programming and Applications with Julia</a>
         <button class="hamburger" id="hamburger">
             <span></span>
             <span></span>
@@ -592,7 +596,7 @@
             <div class="about-features">
                 <div class="feature-item">
                     <div class="feature-icon">✓</div>
-                    <span><strong>7 Comprehensive Chapters:</strong> From fundamentals to advanced techniques</span>
+                    <span><strong>8 Comprehensive Chapters:</strong> From fundamentals to advanced techniques</span>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">✓</div>
@@ -628,23 +632,23 @@
                 </div>
             </div>
             <div class="chapter-card">
-                <h3>Chapter 2: Formulation</h3>
-                <p>Learn how to formulate real-world problems as ILP models.</p>
+                <h3>Chapter 2: Knapsack Problems</h3>
+                <p>Learn how to formulate and solve knapsack problems using integer programming.</p>
                 <div>
                     <span class="chapter-tag">Modeling</span>
                     <span class="chapter-tag">Applications</span>
                 </div>
             </div>
             <div class="chapter-card">
-                <h3>Chapter 3: Facility Location</h3>
-                <p>Solve facility location problems including MCLP, SCLP, and capacity constraints.</p>
+                <h3>Chapter 3: Location Problems</h3>
+                <p>Solve facility location problems including PMP, MCLP, SCLP.</p>
                 <div>
                     <span class="chapter-tag">Optimization</span>
                     <span class="chapter-tag">Case Study</span>
                 </div>
             </div>
             <div class="chapter-card">
-                <h3>Chapter 4: Traveling Salesman</h3>
+                <h3>Chapter 4: Traveling Salesman Problem</h3>
                 <p>Master TSP formulations and modern solution approaches.</p>
                 <div>
                     <span class="chapter-tag">Routing</span>
@@ -652,15 +656,15 @@
                 </div>
             </div>
             <div class="chapter-card">
-                <h3>Chapter 5: Graph Algorithms</h3>
-                <p>Explore graph coloring, cliques, and partitioning problems.</p>
+                <h3>Chapter 5: Graph Problems</h3>
+                <p>Explore graph coloring, covering, and partitioning problems.</p>
                 <div>
                     <span class="chapter-tag">Graphs</span>
                     <span class="chapter-tag">Theory</span>
                 </div>
             </div>
             <div class="chapter-card">
-                <h3>Chapter 6: Cutting Planes</h3>
+                <h3>Chapter 6: Column Generation</h3>
                 <p>Advanced techniques for tightening formulations and improving bounds.</p>
                 <div>
                     <span class="chapter-tag">Advanced</span>
@@ -668,19 +672,19 @@
                 </div>
             </div>
             <div class="chapter-card">
-                <h3>Chapter 7: Lagrangian</h3>
-                <p>Introduction to Lagrangian relaxation and dual methods.</p>
+                <h3>Chapter 7: Lagrangian Relaxation</h3>
+                <p>Introduction to Lagrangian relaxation, duals and subgradient method.</p>
                 <div>
                     <span class="chapter-tag">Advanced</span>
-                    <span class="chapter-tag">Theory</span>
+                    <span class="chapter-tag">Methods</span>
                 </div>
             </div>
             <div class="chapter-card">
-                <h3>Appendix A: TSP Dataset</h3>
-                <p>Comprehensive traveling salesman problem instances and analysis.</p>
+                <h3>Chapter 8: Branch-and-Bound</h3>
+                <p>Learn the branch-and-bound method for solving integer programming problems.</p>
                 <div>
-                    <span class="chapter-tag">Data</span>
-                    <span class="chapter-tag">Reference</span>
+                    <span class="chapter-tag">Advanced</span>
+                    <span class="chapter-tag">Methods</span>
                 </div>
             </div>
         </div>
@@ -766,7 +770,7 @@
         </div>
         <div style="text-align: center; margin-top: 2rem;">
             <a href="https://zenodo.org/records/21166420" class="btn btn-primary">View on Zenodo</a>
-            <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" class="btn btn-secondary" style="margin-left: 1rem;">GitHub Repository</a>
+            <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" class="btn btn-primary" style="margin-left: 1rem;">GitHub Repository</a>
         </div>
     </section>
 
