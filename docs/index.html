@@ -436,6 +436,35 @@
             margin-right: 0.5rem;
         }
 
+        .chapters-section {
+            background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-light) 100%);
+        }
+
+        .chapter-part {
+            margin-top: 2rem;
+        }
+
+        .chapter-part h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .chapter-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .chapter-card li {
+            color: var(--text-light);
+            padding-left: 0.75rem;
+            border-left: 3px solid var(--primary-light);
+            line-height: 1.6;
+        }
+
         /* Key Features */
         .features {
             background: var(--bg-light);
@@ -838,6 +867,114 @@
                 <div class="hero-image-card">
                     <img src="images/cover.png" alt="Book cover preview">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapters Overview Section -->
+    <section id="chapters" class="chapters-section">
+        <h2>Book Chapters</h2>
+
+        <div class="chapter-part">
+            <h3>Chapter 1</h3>
+            <div class="chapters-grid">
+                <article class="chapter-card">
+                    <span class="chapter-tag">Chapter 1</span>
+                    <h3>Introduction to Integer Programming</h3>
+                    <p>Introduces the foundations of integer programming, including model formulation, decision variables, objective functions, and the role of integrality in optimization.</p>
+                </article>
+            </div>
+        </div>
+
+        <div class="chapter-part">
+            <h3>Part 1 - Applications</h3>
+            <div class="chapters-grid">
+                <article class="chapter-card">
+                    <span class="chapter-tag">Chapter 2</span>
+                    <h3>Knapsack Problems</h3>
+                    <p>Explores classic knapsack formulations and shows how binary and integer decisions can model resource allocation problems.</p>
+                    <ul>
+                        <li>Binary Knapsack Problem (BKP)</li>
+                        <li>Integer Knapsack Problem (IKP)</li>
+                    </ul>
+                </article>
+                <article class="chapter-card">
+                    <span class="chapter-tag">Chapter 3</span>
+                    <h3>Location Problems</h3>
+                    <p>Presents fundamental facility-location models and their use in deciding where to place services or resources efficiently.</p>
+                    <ul>
+                        <li>P-Median Problem (PMP)</li>
+                        <li>Set Covering Location Problem (SCLP)</li>
+                        <li>Maximal Coverage Location Problem (MCLP)</li>
+                    </ul>
+                </article>
+                <article class="chapter-card">
+                    <span class="chapter-tag">Chapter 4</span>
+                    <h3>Traveling Salesman Problem</h3>
+                    <p>Discusses one of the most well-known combinatorial optimization problems and compares different mathematical formulations and solution approaches.</p>
+                </article>
+                <article class="chapter-card">
+                    <span class="chapter-tag">Chapter 5</span>
+                    <h3>Graph Problems</h3>
+                    <p>Examines several important graph optimization problems and demonstrates how graph structures can be translated into integer programming models.</p>
+                    <ul>
+                        <li>Maximum Independent Set Problem (MISP)</li>
+                        <li>Vertex Covering Problem (VCP)</li>
+                        <li>Graph Coloring Problem (GCP)</li>
+                        <li>Graph Partitioning Problem (GPP)</li>
+                        <li>Clique Partitioning Problem (CPP)</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+
+        <div class="chapter-part">
+            <h3>Part 2 - Advanced Techniques</h3>
+            <div class="chapters-grid">
+                <article class="chapter-card">
+                    <span class="chapter-tag">Chapter 6</span>
+                    <h3>Column Generation</h3>
+                    <p>Introduces column generation as a decomposition technique for solving large-scale optimization models efficiently.</p>
+                    <ul>
+                        <li>One-dimensional Cutting Stock Problem (1D-CSP)</li>
+                        <li>P-Median Problem (PMP)</li>
+                    </ul>
+                </article>
+                <article class="chapter-card">
+                    <span class="chapter-tag">Chapter 7</span>
+                    <h3>Lagrangian Relaxation</h3>
+                    <p>Explains Lagrangian relaxation as a strategy for simplifying difficult models and deriving bounds for complex optimization problems.</p>
+                    <ul>
+                        <li>P-Median Problem (PMP)</li>
+                        <li>Maximum Independent Set Problem (MISP)</li>
+                        <li>Generalized Assignment Problem (GAP)</li>
+                    </ul>
+                </article>
+                <article class="chapter-card">
+                    <span class="chapter-tag">Chapter 8</span>
+                    <h3>Branch-and-Bound</h3>
+                    <p>Covers branch-and-bound methods and their role in systematically exploring solution spaces to find optimal integer solutions.</p>
+                    <ul>
+                        <li>Binary Knapsack Problem (BKP)</li>
+                        <li>Traveling Salesman Problem (TSP)</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+
+        <div class="chapter-part">
+            <h3>Appendix</h3>
+            <div class="chapters-grid">
+                <article class="chapter-card">
+                    <span class="chapter-tag">Appendix A</span>
+                    <h3>Julia Introduction</h3>
+                    <p>Provides a practical introduction to Julia and its use for implementing and solving optimization models.</p>
+                </article>
+                <article class="chapter-card">
+                    <span class="chapter-tag">Appendix B</span>
+                    <h3>Exercise Solutions</h3>
+                    <p>Offers complete solutions and explanations for the exercises presented throughout the book.</p>
+                </article>
             </div>
         </div>
     </section>
