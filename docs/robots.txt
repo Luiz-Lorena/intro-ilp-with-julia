@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://luiz-lorena.github.io/intro-ilp-with-julia/sitemap.xml
