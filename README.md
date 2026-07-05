@@ -4,6 +4,10 @@ This repository contains the Jupyter notebooks accompanying the book [*Introduct
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21166419.svg)](https://doi.org/10.5281/zenodo.21166419)
 
+<div class="badge">
+    <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21166419.svg" alt="DOI Badge" style="height: 40px;">
+</div>
+
 ## How to cite the book
 
 This repository is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) license.
