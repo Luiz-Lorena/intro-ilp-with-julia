@@ -521,6 +521,7 @@
         .author-card p {
             color: var(--text-light);
             font-size: 0.9rem;
+            text-align: justify;
         }
 
         .author-links {
@@ -587,6 +588,49 @@
             font-family: 'Monaco', 'Menlo', monospace;
             font-size: 0.9rem;
             overflow-x: auto;
+            position: relative;
+        }
+
+        html.dark-mode .citation-box {
+            background: #1f2937;
+            color: #f3f4f6;
+        }
+
+        .citation-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .citation-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .citation-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .citation-btn.success {
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .citation-btn.success:hover {
+            background: var(--success);
+            color: white;
         }
 
         /* Footer */
@@ -805,7 +849,8 @@
                     <img src="images/LuizANLorena.gif" alt="Luiz Antonio Nogueira Lorena">
                 </div>
                 <h3>Luiz Antonio Nogueira Lorena</h3>
-                <p>Senior Researcher in Combinatorial Optimization and Integer Programming</p>
+                <p>Brazilian researcher with an established career in the field of Operations Research. He worked for many years at the National Institute for Space Research (INPE), conducting research on optimization and computational methods for decision support. His academic career is distinguished by an extensive scientific publication record in national and international peer-reviewed journals, participation in research projects funded by agencies such as FAPESP, and the supervision of graduate students and researchers.</p>
+                <p>His primary areas of expertise include Operations Research, Combinatorial Optimization, Mathematical Programming, Metaheuristics, and Evolutionary Algorithms. His research has focused on applications in logistics, transportation, facility location, routing, scheduling, and geographic information systems, with particular emphasis on the development and application of optimization methods for complex decision-support problems in scientific and industrial settings.</p>
                 <div class="author-links">
                     <a href="https://orcid.org/0000-0003-2043-1441" target="_blank" rel="noopener noreferrer" class="author-link orcid" title="ORCID">
                         <img src="images/orcid_logo.svg" alt="ORCID" style="width: 20px; height: 20px;">
@@ -820,7 +865,8 @@
                     <img src="images/LuizHNLorena.gif" alt="Luiz Henrique Nogueira Lorena">
                 </div>
                 <h3>Luiz Henrique Nogueira Lorena</h3>
-                <p>Expert in Algorithm Design and Optimization Methods</p>
+                <p>Brazilian researcher with Ph.D. in Computer Science with expertise in Optimization and Machine Learning.</p>
+                <p>His research interests include Combinatorial Optimization, Graph Theory, Exact Algorithms, Heuristics and Metaheuristics, Complex Networks, and Machine Learning. His work combines Operations Research and Artificial Intelligence methodologies to address complex computational problems with practical applications.</p>
                 <div class="author-links">
                     <a href="https://orcid.org/0000-0002-7072-785X" target="_blank" rel="noopener noreferrer" class="author-link orcid" title="ORCID">
                         <img src="images/orcid_logo.svg" alt="ORCID" style="width: 20px; height: 20px;">
@@ -835,7 +881,8 @@
                     <img src="images/AntonioAChaves.gif" alt="Antônio Augusto Chaves">
                 </div>
                 <h3>Antônio Augusto Chaves</h3>
-                <p>Specialist in Applied Integer Programming and Heuristics</p>
+                <p>Brazilian researcher and Associate Professor at the Institute of Science and Technology of the Federal University of São Paulo (UNIFESP). He has also held several academic leadership positions, including Coordinator of the Graduate Program in Operations Research (UNIFESP–ITA), Coordinator of Graduate Studies and Research at ICT/UNIFESP, and Editor-in-Chief of the journal Pesquisa Operacional (POPe).</p>
+                <p>His research expertise lies in Operations Research, Combinatorial Optimization, Mathematical Programming, Heuristics and Metaheuristics, Evolutionary Computation, and Artificial Intelligence for optimization. His work focuses on solving complex optimization problems arising in logistics, transportation, vehicle routing, scheduling, healthcare operations, production planning, and industrial engineering. He has led numerous FAPESP-funded research projects, supervised graduate students, and published extensively in leading international journals in Operations Research and Optimization, contributing to both methodological advances and practical applications in industrial and service systems.</p>
                 <div class="author-links">
                     <a href="https://orcid.org/0000-0001-5767-6798" target="_blank" rel="noopener noreferrer" class="author-link orcid" title="ORCID">
                         <img src="images/orcid_logo.svg" alt="ORCID" style="width: 20px; height: 20px;">
@@ -852,7 +899,7 @@
     <section id="citation" class="citation-section">
         <h2>How to Cite</h2>
         <p style="text-align: center; color: var(--text-light); margin-bottom: 1rem;">Please cite this book in your research using the following BibTeX entry:</p>
-        <div class="citation-box">
+        <div class="citation-box" id="citationBox">
 @book{LorenaEtAl2026,<br>
 &nbsp;&nbsp;title = {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Introduction to Integer Programming and Applications with Julia<br>
@@ -867,9 +914,11 @@
 &nbsp;&nbsp;url = {https://github.com/Luiz-Lorena/intro-ilp-with-julia}<br>
 }
         </div>
-        <div style="text-align: center; margin-top: 2rem;">
-            <a href="https://doi.org/10.5281/zenodo.21166419" class="btn btn-primary">View on Zenodo</a>
-            <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" class="btn btn-primary" style="margin-left: 1rem;">GitHub Repository</a>
+        <div class="citation-actions">
+            <button class="citation-btn" id="copyBtn" title="Copy BibTeX to clipboard">📋 Copy BibTeX</button>
+            <a href="CITATION.bib" download="CITATION.bib" class="citation-btn" title="Download CITATION.bib file">⬇️ Download CITATION.bib</a>
+            <a href="https://doi.org/10.5281/zenodo.21166419" class="citation-btn" title="View on Zenodo">🔗 View on Zenodo</a>
+            <a href="https://github.com/Luiz-Lorena/intro-ilp-with-julia" class="citation-btn" title="GitHub Repository">🐙 GitHub Repository</a>
         </div>
     </section>
 
@@ -975,6 +1024,39 @@
         document.querySelectorAll('section > *').forEach(el => {
             el.style.opacity = '0';
             observer.observe(el);
+        });
+
+        // Copy BibTeX functionality
+        const copyBtn = document.getElementById('copyBtn');
+        const citationBox = document.getElementById('citationBox');
+
+        copyBtn.addEventListener('click', () => {
+            // Extract clean text from citation box (remove HTML tags)
+            const bibtexText = `@book{LorenaEtAl2026,
+  title = {
+    Introduction to Integer Programming and Applications with Julia
+  },
+  author = {
+    Lorena, Luiz Antonio Nogueira and
+    Lorena, Luiz Henrique Nogueira and
+    Chaves, Antônio Augusto
+  },
+  year = {2026},
+  doi = {https://doi.org/10.5281/zenodo.21166419},
+  url = {https://github.com/Luiz-Lorena/intro-ilp-with-julia}
+}`;
+
+            navigator.clipboard.writeText(bibtexText).then(() => {
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✓ Copied!';
+                copyBtn.classList.add('success');
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.classList.remove('success');
+                }, 2000);
+            }).catch(() => {
+                alert('Failed to copy BibTeX. Please try again.');
+            });
         });
     </script>
 </body>
